@@ -1,7 +1,5 @@
 import { useState } from "react";
-import moment from "moment";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"
+import "./inputForm.css";
 
 export default function UserInput(props) {
 
@@ -19,6 +17,7 @@ const handleSubmit = (e) => {
 
 console.log(stockSymbol);
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
       <label>
         Stock : <input type="text" 
@@ -27,7 +26,15 @@ console.log(stockSymbol);
         />
       </label>
       <label>
+        Time Window :
+      </label> 
+      <input type="number" 
+        value={days}
+        onChange={(e)=> setselectedNumberofDays(e.target.value)}
+        />
+      <label>
       Social Media :
+      </label>
       <select
           type="text" 
           value={socialMedia}
@@ -39,16 +46,10 @@ console.log(stockSymbol);
           <option value="INSTAGRAM">INSTAGRAM</option>
           <option value="FACEBOOK">FACEBOOK</option>
         </select>
-      
-      </label>
-      <label>
-        Time Window : 
-      </label> 
-      <input type="number" 
-        value={days}
-        onChange={(e)=> setselectedNumberofDays(e.target.value)}
-        />
-      <input type="submit" />
+        <br>
+        </br>
+      <input className="submitButton" type="submit" />
     </form>
+    </div>
   );
 }

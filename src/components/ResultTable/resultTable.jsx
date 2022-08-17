@@ -6,13 +6,14 @@ export default function ResultTable(props) {
     
   return (
     <div className="results">
+      {data.length > 0 && ( 
       <table>
         <tr>
           <th>Stock</th>
           <th>Price</th>
           <th>Social Media Count</th>
           <th>Recommendation</th>
-          <th>date</th>
+          <th>Date</th>
         </tr>
         {data.map((val, key) => {
           return (
@@ -26,6 +27,7 @@ export default function ResultTable(props) {
           )
         })}
       </table>
+)}
     </div>
   );
 }
