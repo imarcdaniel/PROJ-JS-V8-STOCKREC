@@ -9,22 +9,27 @@ export function generateStockPrice(maxStockPrice, minStockprice) {
     return Number(((Math.random() * 10000)).toFixed(0));
   }
     export function generateStockRecommendation() {
-    const recommendation = ['BUY', 'SELL', 'HOLD'];
-    const randomIndex = Math.floor(Math.random() * recommendation.length);
-    return recommendation[randomIndex];
+    const randomNumber= Math.random();
+    const baseAlgo = Math.random() * generateStockPrice(60, 1) ;
+    if (randomNumber / Math.floor(baseAlgo) > randomNumber/5 ) {
+        return 'BUY';
+    } else if (randomNumber/ Math.floor(baseAlgo) < randomNumber/5) { 
+        return 'SELL';
+    } else { return 'HOLD'; }
+    
   }
 
-  export function getStockData(stock, dates) {
+  export function getStockData(stock, days) {
     const stockData = [];
     const today = moment().tz("America/New_York");
-    const last10Days  = Array(30).fill().map(
+    
+    const last10Days  = Array(days).fill().map(
         () => today.subtract(1, 'd').format('YYYY-MM-DD')
       );
-
     last10Days.forEach(date => {
         stockData.push({
-            stock: stock,
-            price: generateStockPrice(100, 1),
+            stock,
+            price: generateStockPrice(100, 1).toFixed(2),
             socialMediaCount: generateStockSocialMediaCount(),
             recommendation: generateStockRecommendation(),
             date : date
@@ -32,5 +37,3 @@ export function generateStockPrice(maxStockPrice, minStockprice) {
   });
   return stockData;
 }
-
-console.log(getStockData('FB', ['2019-01-01']));

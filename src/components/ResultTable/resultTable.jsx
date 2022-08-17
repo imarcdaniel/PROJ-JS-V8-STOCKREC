@@ -1,11 +1,9 @@
-import React from "react";
 import './resultTable.css'
-import { getStockData } from "../../api";
 
-export default function ResultTable() {
+export default function ResultTable(props) {
 
-    const data = getStockData('FB', ['2019-01-01']);
-    console.log(data);
+    const data = props.data;
+    
   return (
     <div className="results">
       <table>
@@ -16,13 +14,7 @@ export default function ResultTable() {
           <th>Recommendation</th>
           <th>date</th>
         </tr>
-        <tr>
-          <td>FB</td>
-          <td>19.99</td>
-          <td>19999</td>
-          <td>BUY</td>
-        </tr>
-        {data.slice(0, 10).map((val, key) => {
+        {data.map((val, key) => {
           return (
             <tr key={key}>
               <td>{val.stock}</td>
